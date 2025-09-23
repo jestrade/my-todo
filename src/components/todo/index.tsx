@@ -1,13 +1,25 @@
 import { useState } from "react";
+import { useTodo } from "./useTodo";
+import type { TodoType } from "./types";
+import TodoItem from "./todo-item";
+import { Button, Input } from "./styled";
 
 function Todo() {
-    const [todos, setTodos] = useState([]);
     const [todo, setTodo] = useState("");
+    const { todos, addTodo, removeTodo } = useTodo();
 
-    const onChange = (e) => setTodo(e.target.value);
+    const onChange = (event: React.ChangeEvent<HTMLInputElement>) => setTodo(event.target.value);
 
     const onClick = () => {
-        setTodos([...todos, todo]);
+        const now = new Date().toISOString();
+        const value: TodoType = {
+                        id: now,
+                        content: todo,
+                        done: false,
+                        createdAt: now,
+                        updatedAt: now
+                    };
+        addTodo(value)
         setTodo("");
     }
 
@@ -16,16 +28,16 @@ function Todo() {
             <h1>To do list</h1>
             <form>
                 <div>
-                    <input type="text" name="todo" value={todo} onChange={onChange} />
-                    <button type="button" onClick={onClick}>Add</button>
+                    <Input type="text" name="todo" value={todo} onChange={onChange} />
+                    <Button type="button" onClick={onClick}>Add</Button>
                 </div>
             </form>
 
             <ul>
-                {todos.map((todo, index) => <li key={index}>{todo}</li>)}
+                {todos.map((todo) => <TodoItem key={todo.createdAt} todo={todo} removeTodo={removeTodo} />)}
             </ul>
         </>
     )
 }
 
-export default Todo
+export default Todo;
