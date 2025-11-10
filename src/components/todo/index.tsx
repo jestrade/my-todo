@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useTodo } from "./useTodo";
 import type { TodoType } from "./types";
 import TodoItem from "./todo-item";
-import { Button, Input, TodoItemListHeader, TodoItemListItem } from "./styled";
+import { Button, Input, TodoTable } from "./styled";
 
 function Todo() {
     const [todo, setTodo] = useState("");
@@ -37,16 +37,20 @@ function Todo() {
             </form>
 
             {todos.length > 0 ? (
-                <ul>
-                    <TodoItemListItem key="todo-item-listitem-header">
-                        <TodoItemListHeader>Done</TodoItemListHeader>
-                        <TodoItemListHeader>Content</TodoItemListHeader>
-                        <TodoItemListHeader>Created at</TodoItemListHeader>
-                        <TodoItemListHeader>Updated at</TodoItemListHeader>
-                        <TodoItemListHeader>Delete</TodoItemListHeader>
-                    </TodoItemListItem>
-                    {todos.map((todo) => <TodoItem key={todo.createdAt} todo={todo} />)}
-                </ul>
+                <TodoTable>
+                    <thead>
+                        <tr>
+                            <th>Done</th>
+                            <th>Content</th>
+                            <th>Created at</th>
+                            <th>Updated at</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {todos.map((todo) => <TodoItem key={todo.createdAt} todo={todo} />)}
+                    </tbody>
+                </TodoTable>
             ) : (
                 <p>No todos</p>
             )}

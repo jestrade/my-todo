@@ -20,7 +20,7 @@ export const useTodo = () => {
     const removeTodo = async (id: string) => {
         try {
             await todoApi.deleteTodo(id);
-            
+   
             setTodos(todos.filter(todo => todo._id !== id));
         } catch (error) {
             console.error('Error removing todo:', error);

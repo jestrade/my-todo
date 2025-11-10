@@ -1,41 +1,12 @@
 import styled from "styled-components";
 
-export const TodoItemListItem = styled.li`
-  display: flex;
-  align-items: center;
-  padding: 8px 0;
-  border-bottom: 1px solid #eee;
+export const TodoTable = styled.table`
+  margin: 20px 30px;
+  width: 100%;
+  border-collapse: collapse;
 `;
-
-export const TodoItemListHeader = styled.span`
-    flex: 1;
-    text-align: left;
-    font-weight: 500;
-`;
-
-export const TodoItemContent = styled.span`
-  flex: 1;
-  margin-right: 16px;
-`;
-
-export const TodoItemDone = styled.span`
-  width: 80px;
-`;
-
-export const TodoItemCreatedAt = styled.span`
-  width: 160px;
-  color: #666;
-  font-size: 0.9em;
-`;
-
-export const TodoItemUpdatedAt = styled.span`
-  width: 160px;
-  color: #666;
-  font-size: 0.9em;
-`;
-
-export const TodoItemDelete = styled.button`
-  padding: 8px;
+export const TodoCol = styled.td`
+  text-align: center;
 `;
 
 export const Input = styled.input`

@@ -1,6 +1,6 @@
 import type { TodoType } from "./types";
 
-import { TodoItemContent, TodoItemDone, TodoItemCreatedAt, TodoItemUpdatedAt, TodoItemListItem, TodoItemDelete, Check } from "./styled";
+import { Check, TodoCol } from "./styled";
 import { useTodo } from "./useTodo";
 
 const TodoItem = ({ todo }: { todo: TodoType }) => {
@@ -11,13 +11,13 @@ const TodoItem = ({ todo }: { todo: TodoType }) => {
     const handleDone = () => {
         markAsDone(todo._id);
     }
-    return (<TodoItemListItem>
-                <TodoItemDone><Check type="checkbox" checked={todo.done} onChange={handleDone}/></TodoItemDone>
-                <TodoItemContent>{todo.content}</TodoItemContent>
-                <TodoItemCreatedAt>{todo.createdAt}</TodoItemCreatedAt>
-                <TodoItemUpdatedAt>{todo.updatedAt}</TodoItemUpdatedAt>
-                <TodoItemDelete onClick={handleDelete}>Delete</TodoItemDelete>
-            </TodoItemListItem>);
+    return (<tr>
+                <TodoCol><Check type="checkbox" checked={todo.done} onChange={handleDone}/></TodoCol>
+                <TodoCol>{todo.content}</TodoCol>
+                <TodoCol>{todo.createdAt}</TodoCol>
+                <TodoCol>{todo.updatedAt}</TodoCol>
+                <TodoCol><button onClick={handleDelete}>Delete</button></TodoCol>
+            </tr>);
 }
  
 export default TodoItem;
