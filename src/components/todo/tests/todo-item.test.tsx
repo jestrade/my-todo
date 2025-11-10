@@ -12,6 +12,6 @@ describe("TodoItem", () => {
             updatedAt: "2025-10-17T10:30:00.000Z"
         };
         render(<TodoItem todo={todo} markAsDone={() => {}} removeTodo={() => {}} />);
-        expect(screen.getByText("Test222")).toBeInTheDocument();
+        expect(screen.getByText("Test")).toBeInTheDocument();
     });
 });
