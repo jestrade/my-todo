@@ -1,14 +1,12 @@
-import Todo from "./components/todo";
+
 import "./App.css";
 import { AuthenticatorProvider } from "./contexts/Authenticator";
-import Login from "./components/login";
+import Root from "./components/root";
 
 function App() {
   return (
-    
     <AuthenticatorProvider>
-      <Login />
-      <Todo />
+      <Root />
     </AuthenticatorProvider>
   )
 }
