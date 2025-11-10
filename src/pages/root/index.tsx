@@ -7,7 +7,12 @@ import Public from "../public";
 
 
 const Root = () => {
-  const { isAuthenticated } = useContext(AuthenticatorContext);
+    const { isAuthenticated, loading} = useContext(AuthenticatorContext);
+
+    if (loading) {
+    return <div>Loading...</div>;
+    }
+
     return (
         <>
             {isAuthenticated ? <Private /> : <Public />}

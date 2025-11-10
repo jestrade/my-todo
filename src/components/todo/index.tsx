@@ -2,18 +2,21 @@ import { useState } from "react";
 import { useTodo } from "./useTodo";
 import type { TodoType } from "./types";
 import TodoItem from "./todo-item";
-import { Button, Input } from "./styled";
+import { Button, Input, TodoItemListHeader, TodoItemListItem } from "./styled";
 
 function Todo() {
     const [todo, setTodo] = useState("");
-    const { todos, addTodo, removeTodo } = useTodo();
+    const { todos, addTodo } = useTodo();
 
-    const onChange = (event: React.ChangeEvent<HTMLInputElement>) => setTodo(event.target.value);
+    const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { value } = event.target;
+        setTodo(value);
+    }
 
     const onClick = () => {
+        if (todo === "") return;
         const now = new Date().toISOString();
         const value: TodoType = {
-                        id: now,
                         content: todo,
                         done: false,
                         createdAt: now,
@@ -33,9 +36,20 @@ function Todo() {
                 </div>
             </form>
 
-            <ul>
-                {todos.map((todo) => <TodoItem key={todo.createdAt} todo={todo} removeTodo={removeTodo} />)}
-            </ul>
+            {todos.length > 0 ? (
+                <ul>
+                    <TodoItemListItem key="todo-item-listitem-header">
+                        <TodoItemListHeader>Done</TodoItemListHeader>
+                        <TodoItemListHeader>Content</TodoItemListHeader>
+                        <TodoItemListHeader>Created at</TodoItemListHeader>
+                        <TodoItemListHeader>Updated at</TodoItemListHeader>
+                        <TodoItemListHeader>Delete</TodoItemListHeader>
+                    </TodoItemListItem>
+                    {todos.map((todo) => <TodoItem key={todo.createdAt} todo={todo} />)}
+                </ul>
+            ) : (
+                <p>No todos</p>
+            )}
         </>
     )
 }

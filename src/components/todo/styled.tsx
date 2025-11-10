@@ -7,6 +7,12 @@ export const TodoItemListItem = styled.li`
   border-bottom: 1px solid #eee;
 `;
 
+export const TodoItemListHeader = styled.span`
+    flex: 1;
+    text-align: left;
+    font-weight: 500;
+`;
+
 export const TodoItemContent = styled.span`
   flex: 1;
   margin-right: 16px;
@@ -14,7 +20,6 @@ export const TodoItemContent = styled.span`
 
 export const TodoItemDone = styled.span`
   width: 80px;
-  color: ${props => props.children ? '#4CAF50' : '#F44336'}
 `;
 
 export const TodoItemCreatedAt = styled.span`
@@ -53,4 +58,9 @@ export const Button = styled.button`
   &:hover {
     filter: brightness(0.85);
   }
+`;
+
+export const Check = styled.input`
+  width: 20px;
+  height: 20px;
 `;

@@ -1,20 +1,65 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { todoApi } from "../../utils/apiClient";
 import type { TodoType } from "./types";
 
 export const useTodo = () => {
     const [todos, setTodos] = useState<TodoType[]>([]);
 
-    const addTodo = (todo: TodoType) => {
-        setTodos([...todos, todo]);
+    const addTodo = async (todo: TodoType) => {
+        try {
+            const data = await todoApi.createTodo(todo);
+            if (data.inserted?.length > 0) {
+                setTodos([...todos, data.inserted[0]]);
+            }
+        } catch (error) {
+            console.error('Error adding todo:', error);
+            throw error;
+        }
     }
 
-    const removeTodo = (id: string) => {
-        setTodos(todos.filter(todo => todo.id !== id));
+    const removeTodo = async (id: string) => {
+        try {
+            await todoApi.deleteTodo(id);
+            
+            setTodos(todos.filter(todo => todo._id !== id));
+        } catch (error) {
+            console.error('Error removing todo:', error);
+            throw error;
+        }
     }
 
-    const markAsDone = (id: string) => {
-        setTodos(todos.map(todo => todo.id === id ? { ...todo, done: true, updatedAt: new Date().toISOString() } : todo));
+    const markAsDone = async (id: string) => {
+        try {
+            const updatedAt = new Date().toISOString();
+            await todoApi.updateTodo(id, {
+                done: true,
+                updatedAt
+            });
+            
+            setTodos(todos.map(todo => 
+                todo._id === id 
+                    ? { ...todo, done: true, updatedAt } 
+                    : todo
+            ));
+        } catch (error) {
+            console.error('Error marking todo as done:', error);
+            throw error;
+        }
     }
+
+    useEffect(() => {
+        const fetchTodos = async () => {
+            try {
+                const data = await todoApi.getTodos();
+                setTodos(data);
+            } catch (error) {
+                console.error('Error fetching todos:', error);
+                throw error;
+            }
+        };
+
+        fetchTodos();
+    }, []);
 
     return { todos, addTodo, removeTodo, markAsDone }
 }
