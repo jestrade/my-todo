@@ -1,10 +1,10 @@
-import LoginButton from "../../components/login-button";
+import Login from "../../components/login";
 
 const Public = () => {
     return (
         <>
             <h1>Public</h1>
-            <LoginButton />
+            <Login />
         </>
     )
 }
