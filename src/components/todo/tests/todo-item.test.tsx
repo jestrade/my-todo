@@ -5,13 +5,13 @@ import { TodoType } from "../types";
 describe("TodoItem", () => {
     it("should render the todo item", () => {
         const todo: TodoType = {
-            id: "1",
+            _id: "1",
             content: "Test",
             done: false,
             createdAt: "2025-10-17T10:30:00.000Z",
             updatedAt: "2025-10-17T10:30:00.000Z"
         };
-        render(<TodoItem todo={todo} removeTodo={() => {}} />);
-        expect(screen.getByText("Test")).toBeInTheDocument();
+        render(<TodoItem todo={todo} markAsDone={() => {}} removeTodo={() => {}} />);
+        expect(screen.getByText("Test222")).toBeInTheDocument();
     });
 });
