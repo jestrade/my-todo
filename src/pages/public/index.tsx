@@ -1,4 +1,4 @@
-import LoginButton from "../private/login-button";
+import LoginButton from "../../components/login-button";
 
 const Public = () => {
     return (

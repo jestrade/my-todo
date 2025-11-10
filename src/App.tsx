@@ -1,7 +1,7 @@
 
 import "./App.css";
 import { AuthenticatorProvider } from "./contexts/Authenticator";
-import Root from "./components/root";
+import Root from "./pages/root";
 
 function App() {
   return (

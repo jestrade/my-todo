@@ -1,5 +1,5 @@
-import LogoutButton from "../../components/private/logout-button";
-import Todo from "../../components/private/todo";
+import LogoutButton from "./../../components/logout-button";
+import Todo from "../../components/todo";
 
 const Private = () => {
     return (
