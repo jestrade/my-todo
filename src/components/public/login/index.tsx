@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AuthenticatorContext } from "../../contexts/Authenticator";
+import { AuthenticatorContext } from "../../../contexts/Authenticator";
 
 const Login = () => {
     const { isAuthenticated, setIsAuthenticated } = useContext(AuthenticatorContext);
