@@ -6,7 +6,7 @@ import { Button, Input, TodoTable } from "./styled";
 
 function Todo() {
     const [todo, setTodo] = useState("");
-    const { todos, addTodo } = useTodo();
+    const { todos, addTodo, markAsDone, removeTodo } = useTodo();
 
     const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = event.target;
@@ -48,7 +48,7 @@ function Todo() {
                         </tr>
                     </thead>
                     <tbody>
-                        {todos.map((todo) => <TodoItem key={todo.createdAt} todo={todo} />)}
+                        {todos.map((todo) => <TodoItem key={todo.createdAt} todo={todo} markAsDone={markAsDone} removeTodo={removeTodo} />)}
                     </tbody>
                 </TodoTable>
             ) : (

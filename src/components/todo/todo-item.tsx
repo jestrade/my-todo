@@ -1,10 +1,8 @@
 import type { TodoType } from "./types";
 
 import { Check, TodoCol } from "./styled";
-import { useTodo } from "./useTodo";
 
-const TodoItem = ({ todo }: { todo: TodoType }) => {
-    const { markAsDone, removeTodo } = useTodo();
+const TodoItem = ({ todo, markAsDone, removeTodo }: { todo: TodoType, markAsDone: (id: string) => void, removeTodo: (id: string) => void }) => {
     const handleDelete = () => {
         removeTodo(todo._id);
     }
