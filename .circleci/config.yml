@@ -28,7 +28,7 @@ jobs:
       - run:
           name: Deploy to S3
           command: |
-            aws s3 sync ./build s3://todo-2025-fep-uninorte/ --delete --acl public-read
+            aws s3 sync ./dist s3://todo-2025-fep-uninorte/ --delete --acl public-read
 
 workflows:
   test_and_deploy:
