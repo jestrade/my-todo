@@ -3,7 +3,7 @@ import Login from "../../components/login";
 const Public = () => {
     return (
         <>
-            <h1>Public</h1>
+            <h1>Hello world</h1>
             <Login />
         </>
     )
