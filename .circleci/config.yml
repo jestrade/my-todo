@@ -16,20 +16,19 @@ jobs:
           command: npm test
 
   deploy:
-    executor: aws-cli/default
+    executor: node/default
     steps:
       - checkout
-      - aws-cli/setup:
-          profile_name: default
       - node/install-packages:
           pkg-manager: npm
+      - aws-cli/install
       - run:
           name: Build project
           command: npm run build
       - run:
           name: Deploy to S3
           command: |
-            aws s3 sync ./build s3://todo-2025-fep-uninorte/ --delete --acl public-read
+            aws s3 sync ./dist s3://todo-2025-fep-uninorte/ --delete --acl public-read
 
 workflows:
   test_and_deploy:
