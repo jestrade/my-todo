@@ -16,13 +16,12 @@ jobs:
           command: npm test
 
   deploy:
-    executor: aws-cli/default
+    executor: node/default
     steps:
       - checkout
-      - aws-cli/setup:
-          profile_name: default
       - node/install-packages:
           pkg-manager: npm
+      - aws-cli/install
       - run:
           name: Build project
           command: npm run build
